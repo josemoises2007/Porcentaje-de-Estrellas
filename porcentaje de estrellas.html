@@ -1,55 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-<script defer src="https://pyscript.net/latest/pyscript.js"></script>
-    <title>Porcentaje de Estrellas</title>
+    <title>Página con iFrame</title>
     <style>
-        body {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(ellipse at center, lightblue 0%, #18cefb 100%);
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .feedback-stats {
-            text-align: center;
-            font-size: 24px;
+        /* Estilos opcionales para ajustar el tamaño y la apariencia del iFrame */
+        #miIframe {
+            width: 100%; /* Ancho del iFrame */
+            height: 400px; /* Altura del iFrame */
+            border: 1px solid #ccc; /* Borde para el iFrame */
         }
     </style>
 </head>
 <body>
-    <div class="feedback-stats" id="feedbackStats"></div>
- <py-script>   import requests
-        
-        url_remota = 'https://ajudapratodos.000webhostapp.com/Formulario%20de%20Feedback/mostrar.php'
-        
-        response = requests.get(url_remota)
-        
-        if response.status_code == 200:
-            content = response.text
-            print(content)  # Hipotético: Mostrar el contenido obtenido en la consola del navegador
-        else:
-            print(f"Error al obtener el contenido. Código de estado: {response.status_code}")
-   </py-script>|
-    <script>
-        // Función para cargar los datos de mostrar.php y mostrarlos en el HTML
-        function cargarPorcentajeEstrellas() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("feedbackStats").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "https://ajudapratodos.000webhostapp.com/Formulario%20de%20Feedback/mostrar.php", true);
-            xhttp.send();
-        }
+    <h1>Ejemplo de iFrame</h1>
+    
+    <!-- Este es el contenedor donde se insertará el iFrame -->
+    <div id="contenedorIframe"></div>
 
-        // Llamar a la función para cargar los datos al cargar la página
-        window.onload = cargarPorcentajeEstrellas;
+    <script>
+        // Crear el iFrame
+        var iframe = document.createElement('iframe');
+
+        // Establecer atributos para el iFrame
+        iframe.id = 'miIframe';
+        iframe.src = 'https://ajudapratodos.000webhostapp.com/Formulario%20de%20Feedback/mostrar.php'; // URL que cargará en el iFrame
+        iframe.frameBorder = 0; // Eliminar borde del iFrame (opcional)
+
+        // Agregar el iFrame al contenedor en el documento
+        document.getElementById('contenedorIframe').appendChild(iframe);
     </script>
 </body>
 </html>
