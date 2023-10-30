@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Feedback</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, lightblue 0%, #18cefb 100%);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .feedback-form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            font-size: 30px;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            color: #888;
+            display: inline-block;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .rating label:before {
+            content: "\2605";
+        }
+
+        .rating input:checked ~ label {
+            color: #FFD700;
+        }
+
+        textarea,
+        input[type="text"],
+        input[type="email"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-form">
+        <h1 style="text-align: center;">Formulario de Feedback</h1>
+        <form action="procesar.php" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <p style="margin-bottom: 10px;">Selecciona tu valoración:</p>
+            <div class="rating">
+                <input type="radio" id="star5" name="puntuacion" value="5">
+                <label for="star5"></label>
+                <input type="radio" id="star4" name="puntuacion" value="4">
+                <label for="star4"></label>
+                <input type="radio" id="star3" name="puntuacion" value="3">
+                <label for="star3"></label>
+                <input type="radio" id="star2" name="puntuacion" value="2">
+                <label for="star2"></label>
+                <input type="radio" id="star1" name="puntuacion" value="1">
+                <label for="star1"></label>
+            </div>
+
+            <label for="comentario">Comentario:</label>
+            <textarea id="comentario" name="comentario" rows="4" required></textarea>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+</body>
+</html>
