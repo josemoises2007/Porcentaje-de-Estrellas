@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Porcentaje de Estrellas</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, lightblue 0%, #18cefb 100%);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .feedback-stats {
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-stats" id="feedbackStats"></div>
+
+    <script>
+        // Función para cargar los datos de mostrar.php y mostrarlos en el HTML
+        function cargarPorcentajeEstrellas() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("feedbackStats").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "https://ajudapratodos.000webhostapp.com/Formulario%20de%20Feedback/mostrar.php", true);
+            xhttp.send();
+        }
+
+        // Llamar a la función para cargar los datos al cargar la página
+        window.onload = cargarPorcentajeEstrellas;
+    </script>
+</body>
+</html>
