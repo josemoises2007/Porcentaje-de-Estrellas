@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+<script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <title>Porcentaje de Estrellas</title>
     <style>
         body {
@@ -21,7 +23,27 @@
 </head>
 <body>
     <div class="feedback-stats" id="feedbackStats"></div>
+ <py-script> from flask import Flask, render_template
+import requests
 
+app = Flask(__name__)
+
+def obtener_contenido(url):
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        return response.text
+    else:
+        return f"Error al obtener el contenido. Código de estado: {response.status_code}"
+
+@app.route('/')
+def mostrar_contenido():
+    url_remota = 'https://ajudapratodos.000webhostapp.com/Formulario%20de%20Feedback/mostrar.php'
+    contenido = obtener_contenido(url_remota)
+    return render_template('contenido.html', contenido=contenido)
+
+if __name__ == '__main__':
+    app.run(debug=True) </py-script>|
     <script>
         // Función para cargar los datos de mostrar.php y mostrarlos en el HTML
         function cargarPorcentajeEstrellas() {
